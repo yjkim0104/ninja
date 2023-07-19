@@ -18,8 +18,8 @@ const yellowMon = {
 
 const greenMon = {
   name: "green_mon",
-  hpValue: 202000,
-  speed: 20,
+  hpValue: 81000,
+  speed: 12,
   crashDamage: 300,
   score: 1000,
   exp: 1000,
