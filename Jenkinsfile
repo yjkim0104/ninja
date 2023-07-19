@@ -15,7 +15,7 @@ pipeline {
             steps {
                 echo 'deploying the application...'
                 // copy front source to 192.168.0.221
-                scp -r /var/jenkins_home/workspace/NinJa vagrant@192.168.0.221:/usr/share/nginx/html
+                sh 'scp -r /var/jenkins_home/workspace/NinJa vagrant@192.168.0.221:/usr/share/nginx/html'
 
             }
         }
