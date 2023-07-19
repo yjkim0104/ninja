@@ -54,7 +54,7 @@ const pinkMonBoss = {
 
 const zombieKing = {
   name: "zombie_king",
-  hpValue: 13000000,
+  hpValue: 12100000,
   speed: 8,
   crashDamage: 4000,
   score: 3000000,
