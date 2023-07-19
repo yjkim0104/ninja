@@ -14,6 +14,9 @@ pipeline {
         stage('deploy') {
             steps {
                 echo 'deploying the application...'
+                // copy front source to 192.168.0.221
+                scp -r vagrant
+
             }
         }
     }
