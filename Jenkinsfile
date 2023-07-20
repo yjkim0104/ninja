@@ -17,6 +17,7 @@ pipeline {
                 echo 'deploying the application...'
                 // copy front source to 192.168.0.221
                 sh 'cp /var/jenkins_home/.ssh/* /root/.ssh/'
+                sh 'chmod 600 /root/.ssh/*'
                 sh 'scp -r /var/jenkins_home/workspace/NinJa/ root@192.168.0.221:/usr/share/nginx/html'
 
             }
