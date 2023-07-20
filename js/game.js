@@ -33,7 +33,7 @@ const stageInfo = {
     { defaultMon: greenMon, bossMon: greenMonBoss },
     { defaultMon: pinkMon, bossMon: zombieKing },
   ],
-  callPosition: [1000, 4000, 8000, 10000, 11000, 1200],
+  callPosition: [1000, 4000, 9000, 13000, 16000, 1900],
 };
 
 const gameProp = {
