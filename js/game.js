@@ -96,12 +96,12 @@ const windowEvent = () => {
   window.addEventListener("touchmove", this.touchMove.bind(this), false);
 };
 
-touchDown(tEvent){
+touchDown = (tEvent) => {
   this.touches = tEvent.changedTouches;
 
   this.touches[0].pageX, this.touches[0].pageY;
   // debugMsg
-  document.querySelector(".level_box strong").innerText = this.touches;
+  document.querySelector(".level_box debugMsg").innerText = this.touches;
 };
 
 const loadImg = () => {
