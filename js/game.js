@@ -75,7 +75,7 @@ const setGameBackground = () => {
 const windowEvent = () => {
   window.addEventListener("keydown", (e) => {
     console.log(e.which);
-    document.querySelector(".debugMsg").innerText = e.which;
+    
     if (!gameProp.gameOver) key.keyDown[key.keyValue[e.which]] = true;
     if (key.keyDown["enter"]) {
       npcOne.talk();
@@ -152,7 +152,7 @@ function handleStart(evt) {
   console.log("[main] : [handleStart] : [Y] : " + startY);
   console.log("");
 
-  document.querySelector(".debugMsg").innerText = evt.changedTouches;
+  addDebugMsg("handleStart Y: " + startX + "Y: " + startY);
 };
 
 
@@ -169,7 +169,7 @@ function handleMove(evt) {
   // 터치한 div id 값 확인 	
   var moveId = evt.targetTouches[0].target.id;
   console.log("[main] : [handleMove] : [ID] : " + moveId);
-  document.querySelector(".level_box debugMsg").innerText = this.touches;
+  
 
   // 좌표값 확인
   // var moveX = $(this).scrollLeft(); //jquery 방식
@@ -179,6 +179,7 @@ function handleMove(evt) {
   console.log("[main] : [handleMove] : [X] : " + moveX);
   console.log("[main] : [handleMove] : [Y] : " + moveY);
   console.log("");
+  addDebugMsg("handleMove Y: " + moveX + "Y: " + moveY);
 };
 
 
@@ -198,6 +199,7 @@ function handleEnd(evt) {
   console.log("[main] : [handleEnd] : [X] : " + endX);
   console.log("[main] : [handleEnd] : [Y] : " + endY);
   console.log("");
+  addDebugMsg("handleEnd Y: " + endX + "Y: " + endY);
 };
 
 
@@ -209,3 +211,8 @@ function BodyScrollDisAble(){
 function BodyScrollAble(){
   document.body.style.overflow = "auto"; //스크롤 허용
 };
+
+addDebugMsg = (msg) => {
+  const debugText = document.querySelector(".debugMsg");
+    debugText.value += msg + "\r\n";
+}
