@@ -90,6 +90,18 @@ const windowEvent = () => {
     gameProp.screenWidth = window.innerWidth;
     gameProp.screenHeight = window.innerHeight;
   });
+
+  window.addEventListener("touchstart", this.touchDown.bind(this), false);
+  window.addEventListener("touchend", this.touchUp.bind(this), false);    
+  window.addEventListener("touchmove", this.touchMove.bind(this), false);
+};
+
+touchDown(tEvent){
+  this.touches = tEvent.changedTouches;
+
+  this.touches[0].pageX, this.touches[0].pageY;
+  // debugMsg
+  document.querySelector(".level_box strong").innerText = this.touches;
 };
 
 const loadImg = () => {
