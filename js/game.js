@@ -75,6 +75,7 @@ const setGameBackground = () => {
 const windowEvent = () => {
   window.addEventListener("keydown", (e) => {
     console.log(e.which);
+    document.querySelector(".debugMsg").innerText = e.which;
     if (!gameProp.gameOver) key.keyDown[key.keyValue[e.which]] = true;
     if (key.keyDown["enter"]) {
       npcOne.talk();
@@ -91,23 +92,16 @@ const windowEvent = () => {
     gameProp.screenHeight = window.innerHeight;
   });
 
-  window.addEventListener("touchstart", this.touchDown.bind(this), false);
-  window.addEventListener("touchend", this.touchUp.bind(this), false);    
-  window.addEventListener("touchmove", this.touchMove.bind(this), false);
+  window.addEventListener("touchstart", this.handleStart.bind(this), false);
+  window.addEventListener("touchend", this.handleEnd.bind(this), false);    
+  window.addEventListener("touchmove", this.handleMove.bind(this), false);
 };
 
-touchDown = (tEvent) => {
-  this.touches = tEvent.changedTouches;
-
-  this.touches[0].pageX, this.touches[0].pageY;
-  // debugMsg
-  document.querySelector(".level_box debugMsg").innerText = this.touches;
-};
 
 const loadImg = () => {
   const preLoadImgSrc = [
-    "../images/ninja_attack.png",
-    "../images/ninja_run.png",
+    "./images/ninja_attack.png",
+    "./images/ninja_run.png",
   ];
   preLoadImgSrc.forEach((arr) => {
     const img = new Image();
@@ -132,4 +126,86 @@ const init = () => {
 
 window.onload = () => {
   init();
+};
+
+
+function handleStart(evt) {
+  console.log("");
+  console.log("[main] : [handleStart] : [start]");
+
+
+  // body 스크롤 막음 [바디영역에서 스크롤있으면 터치 이벤트 안먹힙니다]
+  BodyScrollDisAble();
+
+
+  // 터치한 div id 값 확인 
+  var startId = evt.targetTouches[0].target.id;
+  console.log("[main] : [handleStart] : [ID] : " + startId);    			
+
+
+  // 좌표값 확인
+  //var startX = $(this).scrollLeft(); //jquery 방식
+  //var startY = $(this).scrollTop(); //jquery 방식
+  var startX = evt.changedTouches[0].clientX;
+  var startY = evt.changedTouches[0].clientY;
+  console.log("[main] : [handleStart] : [X] : " + startX);
+  console.log("[main] : [handleStart] : [Y] : " + startY);
+  console.log("");
+
+  document.querySelector(".debugMsg").innerText = evt.changedTouches;
+};
+
+
+// [모바일 : 터치 이동 내부 함수]
+function handleMove(evt) {
+  console.log("");		
+  console.log("[main] : [handleMove] : [start]");
+
+
+  // body 스크롤 막음 [바디영역에서 스크롤있으면 터치 이벤트 안먹힙니다]
+  BodyScrollDisAble();
+
+
+  // 터치한 div id 값 확인 	
+  var moveId = evt.targetTouches[0].target.id;
+  console.log("[main] : [handleMove] : [ID] : " + moveId);
+  document.querySelector(".level_box debugMsg").innerText = this.touches;
+
+  // 좌표값 확인
+  // var moveX = $(this).scrollLeft(); //jquery 방식
+  // var moveY = $(this).scrollTop(); //jquery 방식
+  var moveX = evt.changedTouches[0].clientX;
+  var moveY = evt.changedTouches[0].clientY;
+  console.log("[main] : [handleMove] : [X] : " + moveX);
+  console.log("[main] : [handleMove] : [Y] : " + moveY);
+  console.log("");
+};
+
+
+// [모바일 : 터치 종료 내부 함수] 
+function handleEnd(evt) {
+  console.log("");
+  console.log("[main] : [handleEnd] : [start]");
+
+
+  // 바디 스크롤 허용 
+  BodyScrollAble();
+
+
+  // 좌표값 확인 
+  var endX = evt.changedTouches[0].clientX;
+  var endY = evt.changedTouches[0].clientY;
+  console.log("[main] : [handleEnd] : [X] : " + endX);
+  console.log("[main] : [handleEnd] : [Y] : " + endY);
+  console.log("");
+};
+
+
+
+/* [body 영역 스크롤 관리 부분] */
+function BodyScrollDisAble(){
+  document.body.style.overflow = "hidden"; //스크롤 막음
+};		
+function BodyScrollAble(){
+  document.body.style.overflow = "auto"; //스크롤 허용
 };
